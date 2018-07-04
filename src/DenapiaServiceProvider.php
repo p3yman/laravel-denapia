@@ -1,7 +1,8 @@
 <?php
 
-namespace Peyman3d\Denapia\Providers;
+namespace Peyman3d\Denapia;
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class DenapiaServiceProvider extends ServiceProvider
@@ -13,8 +14,9 @@ class DenapiaServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-    	// Load routes
-	    $this->loadRoutesFrom(__DIR__.'/Http/routes.php');
+	    
+    	$this->registerRoutes();
+	    
     }
 
     /**
@@ -24,6 +26,40 @@ class DenapiaServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+    	
+	    $this->registerConfig();
+	    
     }
+	
+	/**
+	 * Register routes
+	 */
+	protected function registerRoutes(){
+		
+		Route::group([
+			'prefix' => config('denapia.uri', 'admin'),
+			'namespace' => 'Peyman3d\Denapia\Http\Controllers',
+			'middleware' => config('denapia.middleware', 'web'),
+		], function () {
+			$this->loadRoutesFrom(__DIR__.'/../routes/web.php');
+		});
+    	
+    }
+	
+	/**
+	 * Register and publish configs
+	 */
+	protected function registerConfig() {
+		
+		// Merge
+		$this->mergeConfigFrom(
+			__DIR__.'/../config/denapia.php', 'denapia'
+		);
+		
+		// Publish
+		$this->publishes([
+			__DIR__.'/../config/denapia.php' => config_path('denapia.php'),
+		], 'denapia-config');
+		
+	}
 }
