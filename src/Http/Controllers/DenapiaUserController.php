@@ -131,7 +131,11 @@ class DenapiaUserController extends Controller
 	 */
 	public function destroy($id)
 	{
-		//
+		$model = $this->model->findOrFail($id);
+		
+		$model->delete();
+		
+		return redirect()->route('denapia.users.index');
 	}
 	
 }

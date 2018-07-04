@@ -14,7 +14,9 @@
 
                         @include('denapia::admin.users.form')
 
-                        <button class="btn btn-info btn-fill pull-right">Update</button>
+                        <div class="pull-right">
+                            <button class="btn btn-info btn-fill">Update</button>
+                        </div>
                         <div class="clearfix"></div>
 
                     {!! Form::close() !!}
