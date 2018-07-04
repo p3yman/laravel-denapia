@@ -1,6 +1,7 @@
 {
     "name": "peyman3d/laravel-denapia",
     "description": "Denapia: Laravel Admin Panel",
+    "keywords": ["laravel", "admin", "package", "panel", "dashboard"],
     "type": "laravel, admin",
     "license": "MIT",
     "authors": [
@@ -9,5 +10,20 @@
             "email": "peyman.eskandari@gmail.com"
         }
     ],
-    "require": {}
+    "require": {},
+  "autoload": {
+    "psr-4": {
+      "Peyman3d\\Share\\": "src/"
+    }
+  },
+    "extra": {
+      "laravel": {
+        "providers": [
+          "Peyman3d\\Denapia\\DenapiaServiceProvider"
+        ],
+        "aliases": {
+          "Denapia": "Peyman3d\\Denapia\\DenapiaFacade"
+        }
+      }
+    }
 }
