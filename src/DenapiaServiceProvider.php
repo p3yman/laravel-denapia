@@ -22,6 +22,7 @@ class DenapiaServiceProvider extends ServiceProvider
     	$this->publishAssets();
     	$this->registerViews();
     	$this->registerMiddleware($router);
+    	$this->registerHelpers();
 	    
     }
 
@@ -97,5 +98,12 @@ class DenapiaServiceProvider extends ServiceProvider
 	 */
 	public function registerMiddleware($router){
 		$router->aliasMiddleware('admin', \Peyman3d\Denapia\Http\Middleware\DenapiaAdminMiddleware::class);
+	}
+	
+	/**
+	 * Register helpers
+	 */
+	private function registerHelpers() {
+		require_once('helpers.php');
 	}
 }
