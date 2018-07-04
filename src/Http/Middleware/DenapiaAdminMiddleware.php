@@ -31,7 +31,7 @@ class DenapiaAdminMiddleware
 		share()->css('font-montserrat')->link('https://fonts.googleapis.com/css?family=Montserrat:400,700,200');
 		share()->css('font-awesome')->link('https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css');
 		share()->css('bootstrap')->link('vendor/denapia/lbd/css/bootstrap.min.css');
-		share()->css('bootstrap')->link('vendor/denapia/lbd/css/light-bootstrap-dashboard.css');
+		share()->css('lbd')->link('vendor/denapia/lbd/css/light-bootstrap-dashboard.css');
 		
 		// JS
 		share()->js('jquery')->link('vendor/denapia/lbd/js/core/jquery.3.2.1.min.js');

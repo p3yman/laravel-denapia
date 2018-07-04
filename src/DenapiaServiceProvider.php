@@ -2,21 +2,26 @@
 
 namespace Peyman3d\Denapia;
 
+use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class DenapiaServiceProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap services.
-     *
-     * @return void
-     */
-    public function boot()
+	/**
+	 * Bootstrap services.
+	 *
+	 * @param Router $router
+	 *
+	 * @return void
+	 */
+    public function boot(Router $router)
     {
 	    
     	$this->registerRoutes();
     	$this->publishAssets();
+    	$this->registerViews();
+    	$this->registerMiddleware($router);
 	    
     }
 
@@ -38,6 +43,7 @@ class DenapiaServiceProvider extends ServiceProvider
 	protected function registerRoutes(){
 		
 		Route::group([
+			'as' => 'denapia.',
 			'prefix' => config('denapia.uri', 'admin'),
 			'namespace' => 'Peyman3d\Denapia\Http\Controllers',
 			'middleware' => config('denapia.middleware', 'web'),
@@ -64,11 +70,32 @@ class DenapiaServiceProvider extends ServiceProvider
 		
 	}
 	
+	/**
+	 * Register assets for publish
+	 */
 	private function publishAssets() {
 		
 		$this->publishes([
 			__DIR__.'/../public' => public_path('vendor/denapia'),
 		], 'denapia-assets');
 		
+	}
+	
+	/**
+	 * Register views
+	 */
+	private function registerViews() {
+		
+		$this->loadViewsFrom(__DIR__.'/../resources', 'denapia');
+		
+	}
+	
+	/**
+	 * Register Admin Middleware
+	 *
+	 * @param $router
+	 */
+	public function registerMiddleware($router){
+		$router->aliasMiddleware('admin', \Peyman3d\Denapia\Http\Middleware\DenapiaAdminMiddleware::class);
 	}
 }
