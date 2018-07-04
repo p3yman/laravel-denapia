@@ -1,0 +1,13 @@
+{
+    "name": "peyman3d/laravel-denapia",
+    "description": "Denapia: Laravel Admin Panel",
+    "type": "laravel, admin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Peyman Eskandari",
+            "email": "peyman.eskandari@gmail.com"
+        }
+    ],
+    "require": {}
+}
