@@ -16,6 +16,7 @@ class DenapiaServiceProvider extends ServiceProvider
     {
 	    
     	$this->registerRoutes();
+    	$this->publishAssets();
 	    
     }
 
@@ -49,7 +50,7 @@ class DenapiaServiceProvider extends ServiceProvider
 	/**
 	 * Register and publish configs
 	 */
-	protected function registerConfig() {
+	private function registerConfig() {
 		
 		// Merge
 		$this->mergeConfigFrom(
@@ -60,6 +61,14 @@ class DenapiaServiceProvider extends ServiceProvider
 		$this->publishes([
 			__DIR__.'/../config/denapia.php' => config_path('denapia.php'),
 		], 'denapia-config');
+		
+	}
+	
+	private function publishAssets() {
+		
+		$this->publishes([
+			__DIR__.'/../public' => public_path('vendor/denapia'),
+		], 'denapia-assets');
 		
 	}
 }
