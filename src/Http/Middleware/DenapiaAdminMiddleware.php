@@ -18,6 +18,9 @@ class DenapiaAdminMiddleware
 	
 	    // Add assets
 	    $this->registerAssets();
+	    
+	    // Register menu items
+	    $this->registerMenuItems();
     	
         return $next($request);
     }
@@ -38,5 +41,15 @@ class DenapiaAdminMiddleware
 		share()->js('popper')->link('vendor/denapia/lbd/js/core/popper.min.js');
 		share()->js('bootstrap-js')->link('vendor/denapia/lbd/js/core/bootstrap.min.js');
 	
+	}
+	
+	/**
+	 * Register menu items
+	 */
+	private function registerMenuItems() {
+		
+		// Dashboard
+		share()->menu()->item('dashboard')->label('Dashboard')->route('denapia.dashboard')->icon('nc-icon nc-chart-pie-35');
+		
 	}
 }

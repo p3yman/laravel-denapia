@@ -1,17 +1,21 @@
-<div class="sidebar" data-color="blue" data-image="{{ asset('vendor/denapia/lbd/img/sidebar-5.jpg') }}">
+<div class="sidebar" data-color="blue">
     <div class="sidebar-wrapper">
         <div class="logo">
-            <a href="https://www.creative-tim.com" class="simple-text">
-                Creative Tim
-            </a>
+            <a href="{{ url('/') }}" class="simple-text">Denapia</a>
         </div>
         <ul class="nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="dashboard.html">
-                    <i class="nc-icon nc-chart-pie-35"></i>
-                    <p>Dashboard</p>
-                </a>
-            </li>
+
+            @foreach( share()->menu()->get() as $item )
+
+                <li class="nav-item {{ is_menu_item_active($item) ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ make_menu_link($item) }}">
+                        <i class="{{ array_get($item, 'icon') }}"></i>
+                        <p>{{ array_get($item, 'label') }}</p>
+                    </a>
+                </li>
+
+            @endforeach
+            
             <li>
                 <a class="nav-link" href="./user.html">
                     <i class="nc-icon nc-circle-09"></i>
