@@ -10,7 +10,9 @@
             "email": "peyman.eskandari@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+      "peyman3d/laravel-share": "^1.3"
+    },
   "autoload": {
     "psr-4": {
       "Peyman3d\\Share\\": "src/"
