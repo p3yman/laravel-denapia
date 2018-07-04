@@ -3,6 +3,7 @@
 namespace Peyman3d\Denapia\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
 
 class DenapiaUserController extends Controller
@@ -15,7 +16,9 @@ class DenapiaUserController extends Controller
 	 */
 	public function index()
 	{
-		//
+		$models = User::orderBy('created_at', 'desc')->paginate(12);
+		
+		return view('denapia::admin.users.index', compact('models'));
 	}
 	
 	/**

@@ -52,7 +52,7 @@ class DenapiaAdminMiddleware
 		share()->menu()->item('dashboard')->label('Dashboard')->route('denapia.dashboard')->icon('nc-icon nc-chart-pie-35');
 		
 		// Users
-		share()->menu()->item('users')->label('Users')->route('denapia.dashboard')->icon('nc-icon nc-single-02');
+		share()->menu()->item('users')->label('Users')->route('denapia.users.index')->icon('nc-icon nc-single-02');
 		
 	}
 }
