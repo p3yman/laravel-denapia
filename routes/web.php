@@ -24,4 +24,3 @@ Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
 	Route::put('{user}/restore', 'DenapiaUserController@restore')->name('restore');
 	Route::delete('{user}', 'DenapiaUserController@destroy')->name('destroy');
 });
-
