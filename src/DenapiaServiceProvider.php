@@ -43,6 +43,7 @@ class DenapiaServiceProvider extends ServiceProvider
 	 */
 	protected function registerRoutes(){
 		
+		// Web routes
 		Route::group([
 			'as' => 'denapia.',
 			'prefix' => config('denapia.uri', 'admin'),
@@ -50,6 +51,15 @@ class DenapiaServiceProvider extends ServiceProvider
 			'middleware' => config('denapia.middleware', 'web'),
 		], function () {
 			$this->loadRoutesFrom(__DIR__.'/../routes/web.php');
+		});
+		
+		// Auth routes
+		Route::group([
+			'prefix' => config('denapia.auth.uri', 'auth'),
+			'namespace' => config('denapia.auth.namespace', '\Peyman3d\Denapia\Http\Controllers\Auth'),
+			'middleware' => config('denapia.auth.middleware', 'web'),
+		], function () {
+			$this->loadRoutesFrom(__DIR__.'/../routes/auth.php');
 		});
     	
     }
